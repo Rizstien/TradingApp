@@ -7,6 +7,7 @@ import { TradingComponent } from './components/TradingListView/trading/trading.c
 import { NavbarComponent } from './shared/component/navbar/navbar/navbar.component';
 import { LoginComponent } from "./shared/component/login/login/login.component";
 
+
 @Component({
   selector: 'app-root',
   standalone: true,

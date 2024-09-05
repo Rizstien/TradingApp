@@ -1,11 +1,12 @@
 import { Component,signal } from '@angular/core';
 import { AsyncPipe, CommonModule, CurrencyPipe } from '@angular/common';
 import { Observable, interval,map } from 'rxjs';
+import { SortPipe } from '../../../shared/pipes/sort.pipe';
 
 @Component({
   selector: 'app-trading',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe,AsyncPipe ],
+  imports: [CommonModule, CurrencyPipe,AsyncPipe,SortPipe ],
   templateUrl: './trading.component.html',
   styleUrl: './trading.component.scss'
 })
