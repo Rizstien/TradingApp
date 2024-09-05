@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SortPipe implements PipeTransform {
 
-  transform(array: any[], field: string, order: string = 'asc'): any[] {
+  transform(array: any[], field: string, order: string): any[] {
     if (!Array.isArray(array) || !field) {
       return array;
     }
@@ -14,24 +14,33 @@ export class SortPipe implements PipeTransform {
     const sortedArray = array.sort((a, b) => {
       let fieldA, fieldB;
 
-      // Handle signal values for 'value' field
-      if (field === 'value') {
+      if (field === 'value') 
+      {
         fieldA = a[field]();
         fieldB = b[field]();
-      } else if (field === 'marketCap') {
+      } 
+      else if (field === 'marketCap') 
+      {
         // Convert marketCap to numeric value for sorting
         fieldA = this.convertMarketCap(a[field]);
         fieldB = this.convertMarketCap(b[field]);
-      } else {
+      } 
+      else 
+      {
         fieldA = a[field];
         fieldB = b[field];
       }
 
-      if (fieldA < fieldB) {
+      if (fieldA < fieldB) 
+      {
         return order === 'asc' ? -1 : 1;
-      } else if (fieldA > fieldB) {
+      } 
+      else if (fieldA > fieldB) 
+      {
         return order === 'asc' ? 1 : -1;
-      } else {
+      } 
+      else 
+      {
         return 0;
       }
     });

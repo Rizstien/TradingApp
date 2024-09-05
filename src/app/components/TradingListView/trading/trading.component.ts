@@ -15,14 +15,14 @@ export class TradingComponent {
   
   public coins: any[] = [
     { name: 'Bitcoin', value: signal(100),marketCap:"3B",volume:10000 },
-    { name: 'Ethereum', value: signal(50),marketCap:"2B",volume:20000 },
-    { name: 'Litecoin', value: signal(25),marketCap:"1B",volume:3400 },
-    { name: 'Dodge', value: signal(88),marketCap:"1B",volume:60000 },
-    { name: 'Mexi', value: signal(105),marketCap:"1B",volume:43800 },
-    { name: 'Meme', value: signal(32),marketCap:"3B",volume:9999 },
-    { name: 'Pepe', value: signal(120),marketCap:"4M",volume:10000 },
-    { name: 'Matic', value: signal(90),marketCap:"1.2B",volume:10000 },
-    { name: 'Near', value: signal(108),marketCap:"1B",volume:10000 },
+    { name: 'Ethereum', value: signal(50),marketCap:"2B",volume:30000 },
+    { name: 'Litecoin', value: signal(25),marketCap:"1B",volume:20000 },
+    { name: 'Dodge', value: signal(88),marketCap:"1B",volume:40000 },
+    { name: 'Mexi', value: signal(105),marketCap:"1B",volume:50800 },
+    { name: 'Meme', value: signal(32),marketCap:"3B",volume:60000 },
+    { name: 'Pepe', value: signal(120),marketCap:"4M",volume:70000 },
+    { name: 'Matic', value: signal(90),marketCap:"1.2B",volume:80000 },
+    { name: 'Near', value: signal(108),marketCap:"1B",volume:90000 },
   ];
   constructor() {
     this.getCoins();
