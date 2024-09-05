@@ -12,9 +12,9 @@
         <div *ngFor="let coin of coins" class="grid grid-cols-4 text-center bg-gray-700 hover:bg-gray-600 transition-colors rounded-lg shadow-md py-4 mb-2">
             <div class="font-medium text-lg">{{ coin.name }}</div>
             <div class="font-medium text-lg">
-                <!-- <span [ngClass]="{'text-green-400': coin.value() > 100, 'text-red-400': coin.value() < 100}">
+                <span [ngClass]="{'text-green-400': coin.value() > 100, 'text-red-400': coin.value() < 100}">
                     {{ coin.value() }}
-                </span> -->
+                </span>
             </div>
             <div class="font-medium text-lg">{{coin.marketCap}}</div>
             <div class="font-medium text-lg">{{coin.volume}}</div>
