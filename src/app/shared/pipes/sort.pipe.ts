@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'sort',
-  standalone:true
+  standalone:true,
+  pure: true // Marks the pipe as pure, meaning it won't recalculate unless inputs change
 })
 export class SortPipe implements PipeTransform {
 
