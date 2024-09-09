@@ -22,7 +22,7 @@ export class TradingComponent {
     { name: 'Meme', value: signal(32),marketCap:"5B",volume:60000 },
     { name: 'Pepe', value: signal(120),marketCap:"4M",volume:70000 },
     { name: 'Matic', value: signal(90),marketCap:"3M",volume:80000 },
-    { name: 'Near', value: signal(108),marketCap:"2M",volume:90000 },
+    { name: 'Near', value: signal(108),marketCap:"2M",volume:90000 }
   ];
   constructor() {
     this.getCoins();
