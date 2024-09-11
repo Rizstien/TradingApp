@@ -2,8 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'sort',
-  standalone:true,
-  pure: true // Marks the pipe as pure, meaning it won't recalculate unless inputs change
+  standalone: true,
+  pure: false // Impure pipe so it updates dynamically
 })
 export class SortPipe implements PipeTransform {
 
@@ -11,43 +11,34 @@ export class SortPipe implements PipeTransform {
     if (!Array.isArray(array) || !field) {
       return array;
     }
-
+  
     const sortedArray = array.sort((a, b) => {
       let fieldA, fieldB;
-
-      if (field === 'value') 
-      {
-        fieldA = a[field]();
-        fieldB = b[field]();
-      } 
-      else if (field === 'marketCap') 
-      {
-        // Convert marketCap to numeric value for sorting
+  
+      // Handle sorting based on the 'value' field which is a signal
+      if (field === 'value') {
+        fieldA = a[field](); // Call the signal
+        fieldB = b[field](); // Call the signal
+      } else if (field === 'marketCap') {
         fieldA = this.convertMarketCap(a[field]);
         fieldB = this.convertMarketCap(b[field]);
-      } 
-      else 
-      {
+      } else {
         fieldA = a[field];
         fieldB = b[field];
       }
-
-      if (fieldA < fieldB) 
-      {
+  
+      if (fieldA < fieldB) {
         return order === 'asc' ? -1 : 1;
-      } 
-      else if (fieldA > fieldB) 
-      {
+      } else if (fieldA > fieldB) {
         return order === 'asc' ? 1 : -1;
-      } 
-      else 
-      {
+      } else {
         return 0;
       }
     });
-
+  
     return sortedArray;
   }
+  
 
   // Helper function to convert marketCap string to a numeric value for comparison
   private convertMarketCap(marketCap: string): number {
