@@ -38,11 +38,17 @@ export class TradingComponent {
       this.coins.forEach((coin) => {
         const change = Math.floor(Math.random() * 10) - 5;
         const currentValue = coin.value();
-        coin.value.set(currentValue + change);
-
+        const newValue = currentValue + change;
+        if (newValue >= 0) {
+          coin.value.set(newValue);
+        }
+        
         const changeVol = Math.floor(Math.random() * 10) - 2000;
         const currentVolume = coin.volume();
-        coin.volume.set(currentVolume + change);
+        const newVolume = currentVolume + change;
+        if (newVolume >= 0) {
+          coin.volume.set(newVolume);
+        }
 
       });
     }, 1000);
