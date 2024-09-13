@@ -5,7 +5,6 @@ import { FooterComponent } from "./shared/component/footer/footer.component";
 import { DashboardComponent } from './shared/component/dashboard/dashboard.component';
 import { TradingComponent } from './components/TradingListView/trading/trading.component';
 import { NavbarComponent } from './shared/component/navbar/navbar/navbar.component';
-import { LoginComponent } from "./shared/component/login/login/login.component";
 
 
 @Component({
@@ -18,7 +17,6 @@ import { LoginComponent } from "./shared/component/login/login/login.component";
     FooterComponent,
     DashboardComponent,
     TradingComponent,
-    LoginComponent
 ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

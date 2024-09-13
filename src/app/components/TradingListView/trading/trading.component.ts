@@ -2,17 +2,18 @@ import { Component,signal } from '@angular/core';
 import { AsyncPipe, CommonModule, CurrencyPipe } from '@angular/common';
 import { Observable, interval,map } from 'rxjs';
 import { SortPipe } from '../../../shared/pipes/sort.pipe';
+import { NavbarComponent } from "../../../shared/component/navbar/navbar/navbar.component";
 
 @Component({
   selector: 'app-trading',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe,AsyncPipe,SortPipe ],
+  imports: [CommonModule, CurrencyPipe, AsyncPipe, SortPipe, NavbarComponent],
   templateUrl: './trading.component.html',
   styleUrl: './trading.component.scss'
 })
 
 export class TradingComponent {
-  
+
   public coins: any[] = [
     { name: 'Bitcoin', value: signal(100),marketCap:"10B",volume:signal(10000) },
     { name: 'Ethereum', value: signal(50),marketCap:"8B",volume:signal(30000) },
@@ -42,7 +43,7 @@ export class TradingComponent {
         if (newValue >= 0) {
           coin.value.set(newValue);
         }
-        
+
         const changeVol = Math.floor(Math.random() * 10) - 2000;
         const currentVolume = coin.volume();
         const newVolume = currentVolume + change;
