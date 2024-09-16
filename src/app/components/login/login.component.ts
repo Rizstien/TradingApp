@@ -1,13 +1,38 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { RegistrationService } from '../../shared/service/registration.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink],
+  imports:[ReactiveFormsModule,RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+constructor(public registerService:RegistrationService)
+{
+
+}
+
+
+  loginForm = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl('')});
+
+    onSubmit()
+    {
+      const emailValue=this.loginForm.get('email')?.value;
+      const passwordValue=this.loginForm.get('password')?.value;
+      if(emailValue!=null &&passwordValue!=null )
+      {
+        this.registerService.loginService(emailValue,passwordValue);
+      }
+    
+    }
+
+
+
 
 }

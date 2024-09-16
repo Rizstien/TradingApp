@@ -3,6 +3,7 @@ import { DashboardComponent } from './shared/component/dashboard/dashboard.compo
 import { TradingComponent } from './components/TradingListView/trading/trading.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { authGuard } from './auth/auth.guard';
 
 export const routes: Routes = [
   {
@@ -19,9 +20,6 @@ export const routes: Routes = [
   component: SignUpComponent
 },
 
-
-
-
     { path:"dashboard", component:DashboardComponent},
-    { path:"dashboard/trading", component:TradingComponent}
+    { path:"trading", component:TradingComponent ,canActivate: [authGuard]}
 ];

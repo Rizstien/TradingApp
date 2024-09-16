@@ -46,7 +46,7 @@ export class TradingComponent {
 
         const changeVol = Math.floor(Math.random() * 10) - 2000;
         const currentVolume = coin.volume();
-        const newVolume = currentVolume + change;
+        const newVolume = currentVolume + changeVol;
         if (newVolume >= 0) {
           coin.volume.set(newVolume);
         }
