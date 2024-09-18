@@ -4,43 +4,39 @@ import { Observable } from 'rxjs';
 import { User } from '../../models/user.model';
 import { JsonPipe } from '@angular/common';
 import { Route, Router } from '@angular/router';
+import { ToastService } from './toast.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RegistrationService {
-  constructor(public https:HttpClient,public route:Router) { }
-  loginCheck:boolean=false;
-  signupService(user:User)
-  {
+  constructor(
+    public https: HttpClient,
+    public route: Router,
+    public snackBar: ToastService
+  ) {}
+  loginCheck: boolean = false;
+  signupService(user: User) {
     const userJson = JSON.stringify(user);
-    localStorage.setItem("Signup",userJson);
+    localStorage.setItem('Signup', userJson);
   }
 
-
-  loginService(email:string,password:string)
-  {
-    const getUser=localStorage.getItem("Signup");
-    if(getUser)
-    {
+  loginService(email: string, password: string) {
+    const getUser = localStorage.getItem('Signup');
+    if (getUser) {
       const user = JSON.parse(getUser);
-      if(user.email==email && user.password==password)
-      {
-        console.log("You are logged in ");
-        this.loginCheck=true;
+      if (user.email == email && user.password == password) {
+        console.log('You are logged in ');
+        this.loginCheck = true;
+        this.snackBar.openSuccessfullySnackBar('Login Successfully', '');
         this.route.navigate(['trading']);
+      } else {
+        console.log('You are not logged in');
+        this.loginCheck = false;
+        this.snackBar.openfailSnackBar('Login Failed', '');
       }
-      else
-      {
-        console.log("You are not logged in");
-        this.loginCheck=false;
-      }
+    } else {
+      console.log('Error in parsing to JSON of localstorage user item');
     }
-    else
-    {
-      console.log("Error in parsing to JSON of localstorage user item");
-      
-    }
-   
   }
 }
