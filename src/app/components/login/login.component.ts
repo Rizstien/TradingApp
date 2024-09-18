@@ -11,10 +11,14 @@ import { RegistrationService } from '../../shared/service/registration.service';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-constructor(public registerService:RegistrationService)
+
+
+
+constructor(public registerService:RegistrationService )
 {
 
 }
+
 
 
   loginForm = new FormGroup({
@@ -29,7 +33,6 @@ constructor(public registerService:RegistrationService)
       {
         this.registerService.loginService(emailValue,passwordValue);
       }
-    
     }
 
 
