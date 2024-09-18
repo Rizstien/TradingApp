@@ -16,7 +16,7 @@ export class SignUpComponent {
   constructor(
     public route: Router,
     public registrationservice: RegistrationService,
-    public snackBar:ToastService
+    public snackBar: ToastService
   ) {}
   signup = new FormGroup({
     name: new FormControl(''),
@@ -32,16 +32,9 @@ export class SignUpComponent {
       email: emailValue,
       password: passwordValue,
     };
-
-
-
     this.registrationservice.signupService(user);
-  }
 
-  login(){
-    this.snackBar.openSuccessfullySnackBar("Sign Up Successfully", "")
+    this.snackBar.openSuccessfullySnackBar('Sign Up Successfully', '');
     this.route.navigate(['/login']);
   }
-
-
 }
