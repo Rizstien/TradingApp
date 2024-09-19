@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../../shared/service/registration.service';
-import { User } from '../../core/interceptors/models/user.model';
+import { User } from '../../core/interceptors/models/user/user.model';
 import { ToastService } from '../../shared/service/toast.service';
 
 @Component({
