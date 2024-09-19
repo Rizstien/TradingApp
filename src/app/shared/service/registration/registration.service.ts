@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../../core/interceptors/models/user/user.model';
+import { User } from '../../../core/interceptors/models/user/user.model';
 import { JsonPipe } from '@angular/common';
 import { Route, Router } from '@angular/router';
-import { ToastService } from './toast.service';
+import { ToastService } from '../toast/toast.service';
 
 @Injectable({
   providedIn: 'root',
