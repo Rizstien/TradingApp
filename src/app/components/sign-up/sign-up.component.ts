@@ -25,24 +25,16 @@ export class SignUpComponent {
       userName: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(5)]],
       contactNo: ['', Validators.required],
-      role: ['admin', Validators.required]
+      role: 'admin'
     });
   }
 
-
-  
-  // signup = new FormGroup({
-  //   name: new FormControl(''),
-  //   email: new FormControl(''),
-  //   userName: new FormControl(''),
-  //   contact : new FormControl(''),
-  //   password: new FormControl(''),
-  // });
 
 
 
   onSubmit() {
     if (this.signUpForm.valid) {
+      alert();
       this.registrationservice.signUp(this.signUpForm.value).subscribe(
         response => {
           console.log('User signed up successfully!', response);

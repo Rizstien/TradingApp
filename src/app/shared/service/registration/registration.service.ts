@@ -25,18 +25,9 @@ export class UserService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-
+    console.log(userData);
     return this.https.post(`${this.freeapibaseurl}createNewUser`, userData, { headers });
   }
-
-
-  // singUpUser(user: User) {
-  //   const userJson = JSON.stringify(user);
-  //   localStorage.setItem('Signup', userJson);
-  // }
-
-
-
 
   LoginUser(email: string, password: string) {
     const getUser = localStorage.getItem('Signup');
