@@ -9,33 +9,43 @@ import { ToastService } from './toast.service';
 @Injectable({
   providedIn: 'root',
 })
-export class RegistrationService {
+
+export class UserService {
   constructor(
     public https: HttpClient,
     public route: Router,
     public snackBar: ToastService
   ) {}
   loginCheck: boolean = false;
-  signupService(user: User) {
+
+
+  singUpUser(user: User) {
     const userJson = JSON.stringify(user);
     localStorage.setItem('Signup', userJson);
   }
 
-  loginService(email: string, password: string) {
+  LoginUser(email: string, password: string) {
     const getUser = localStorage.getItem('Signup');
+    
     if (getUser) {
       const user = JSON.parse(getUser);
-      if (user.email == email && user.password == password) {
+      if (user.email == email && user.password == password) 
+      {
         console.log('You are logged in ');
         this.loginCheck = true;
         this.snackBar.openSuccessfullySnackBar('Login Successfully', '');
-        this.route.navigate(['trading']);
-      } else {
+        //this.route.navigate(['coins']);
+        this.route.navigate(['trade']);
+      } 
+      else 
+      {
         console.log('You are not logged in');
         this.loginCheck = false;
         this.snackBar.openfailSnackBar('Login Failed', '');
       }
-    } else {
+    } 
+    else 
+    {
       console.log('Error in parsing to JSON of localstorage user item');
     }
   }

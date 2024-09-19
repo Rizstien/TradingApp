@@ -1,14 +1,14 @@
 import { Routes } from '@angular/router';
-import { TradingComponent } from './components/TradingListView/trading/trading.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { authGuard } from './core/interceptors/guards/auth.guard';
+import { CoinsComponent } from './components/listviews/coins/coins/coins/coins.component';
+import { TradeComponent } from './components/listviews/coins/trades/trade/trade.component';
 
 export const routes: Routes = [
 {path: '',redirectTo: 'login',pathMatch: 'full'},
 {path: 'login',component: LoginComponent},
 {path: 'signup', component: SignUpComponent},
-{path:"trading", component:TradingComponent ,canActivate: [authGuard]}
-
-
+{path:"coins", component:CoinsComponent ,canActivate: [authGuard]},
+{path:"trade", component:TradeComponent}
 ];

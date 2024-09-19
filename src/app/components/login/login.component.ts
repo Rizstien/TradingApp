@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { RegistrationService } from '../../shared/service/registration.service';
+import { UserService } from '../../shared/service/registration.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +14,7 @@ export class LoginComponent {
 
 
 
-constructor(public registerService:RegistrationService )
+constructor(public registerService:UserService )
 {
 
 }
@@ -31,7 +31,7 @@ constructor(public registerService:RegistrationService )
       const passwordValue=this.loginForm.get('password')?.value;
       if(emailValue!=null &&passwordValue!=null )
       {
-        this.registerService.loginService(emailValue,passwordValue);
+        this.registerService.LoginUser(emailValue,passwordValue);
       }
     }
 

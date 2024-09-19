@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { RegistrationService } from '../../shared/service/registration.service';
+import { UserService } from '../../shared/service/registration.service';
 import { User } from '../../core/interceptors/models/user.model';
 import { ToastService } from '../../shared/service/toast.service';
 
@@ -15,7 +15,7 @@ import { ToastService } from '../../shared/service/toast.service';
 export class SignUpComponent {
   constructor(
     public route: Router,
-    public registrationservice: RegistrationService,
+    public registrationservice: UserService,
     public snackBar: ToastService
   ) {}
   signup = new FormGroup({
@@ -32,7 +32,7 @@ export class SignUpComponent {
       email: emailValue,
       password: passwordValue,
     };
-    this.registrationservice.signupService(user);
+    this.registrationservice.singUpUser(user);
 
     this.snackBar.openSuccessfullySnackBar('Sign Up Successfully', '');
     this.route.navigate(['/login']);
