@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../../models/user.model';
+import { User } from '../../core/interceptors/models/user.model';
 import { JsonPipe } from '@angular/common';
 import { Route, Router } from '@angular/router';
 import { ToastService } from './toast.service';
