@@ -1,12 +1,12 @@
 import { AsyncPipe, CommonModule, CurrencyPipe } from '@angular/common';
 import { Component, signal } from '@angular/core';
-import { SortPipe } from '../../../../../shared/pipes/sort.pipe';
 import { NavbarComponent } from '../../../../../shared/component/navbar/navbar/navbar.component';
+import { CoinPipePipe } from '../../../../../shared/pipes/coins/coin-pipe.pipe';
 
 @Component({
   selector: 'app-coins',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe, AsyncPipe,SortPipe,NavbarComponent],
+  imports: [CommonModule, CurrencyPipe, AsyncPipe,CoinPipePipe,NavbarComponent],
   templateUrl: './coins.component.html',
   styleUrl: './coins.component.scss'
 })

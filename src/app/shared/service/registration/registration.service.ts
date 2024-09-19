@@ -1,16 +1,19 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../../../core/interceptors/models/user/user.model';
-import { JsonPipe } from '@angular/common';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ToastService } from '../toast/toast.service';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 
 export class UserService {
+  
+  private freeapibaseurl: string = environment.freebasebaseurl;
+
   constructor(
     public https: HttpClient,
     public route: Router,
@@ -18,11 +21,22 @@ export class UserService {
   ) {}
   loginCheck: boolean = false;
 
+   signUp(userData: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
 
-  singUpUser(user: User) {
-    const userJson = JSON.stringify(user);
-    localStorage.setItem('Signup', userJson);
+    return this.https.post(`${this.freeapibaseurl}createNewUser`, userData, { headers });
   }
+
+
+  // singUpUser(user: User) {
+  //   const userJson = JSON.stringify(user);
+  //   localStorage.setItem('Signup', userJson);
+  // }
+
+
+
 
   LoginUser(email: string, password: string) {
     const getUser = localStorage.getItem('Signup');
@@ -34,8 +48,7 @@ export class UserService {
         console.log('You are logged in ');
         this.loginCheck = true;
         this.snackBar.openSuccessfullySnackBar('Login Successfully', '');
-        //this.route.navigate(['coins']);
-        this.route.navigate(['trade']);
+        this.route.navigate(['coins']);
       } 
       else 
       {
@@ -49,4 +62,7 @@ export class UserService {
       console.log('Error in parsing to JSON of localstorage user item');
     }
   }
+
+
+  
 }
