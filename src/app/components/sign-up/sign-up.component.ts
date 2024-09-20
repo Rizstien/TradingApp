@@ -18,7 +18,7 @@ export class SignUpComponent {
   signUpForm: FormGroup;
   
 
-  constructor( public route: Router,public registrationservice: UserService,public snackBar: ToastService, private fb: FormBuilder) {
+  constructor( public route: Router,public userService: UserService,public snackBar: ToastService, private fb: FormBuilder) {
     this.signUpForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -35,7 +35,7 @@ export class SignUpComponent {
   onSubmit() {
     if (this.signUpForm.valid) {
       alert();
-      this.registrationservice.signUp(this.signUpForm.value).subscribe(
+      this.userService.signUp(this.signUpForm.value).subscribe(
         response => {
           console.log('User signed up successfully!', response);
           this.snackBar.openSuccessfullySnackBar('Sign Up Successfully', '');
@@ -66,7 +66,7 @@ export class SignUpComponent {
   //     contact : contactValue,
   //     password: passwordValue,
   //   };
-  //   this.registrationservice.singUpUser(user);
+  //   this.userService.singUpUser(user);
 
   //   this.snackBar.openSuccessfullySnackBar('Sign Up Successfully', '');
   //   this.route.navigate(['/login']);

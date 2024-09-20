@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../../../core/interceptors/models/user/user.model';
+import { LoginResponse } from '../../../core/interceptors/models/loginresponse/login-response.model';
 import { Router } from '@angular/router';
 import { ToastService } from '../toast/toast.service';
 import { environment } from '../../../../environments/environment';
@@ -13,11 +13,15 @@ import { environment } from '../../../../environments/environment';
 export class UserService {
   
   private freeapibaseurl: string = environment.freebasebaseurl;
-
+  
+  currentUser = {
+    EmailId: "",
+    Password: ""
+  }  
   constructor(
     public https: HttpClient,
     public route: Router,
-    public snackBar: ToastService
+    public snackBar: ToastService,
   ) {}
   loginCheck: boolean = false;
 
@@ -27,33 +31,21 @@ export class UserService {
     });
     console.log(userData);
     return this.https.post(`${this.freeapibaseurl}createNewUser`, userData, { headers });
+  
   }
 
   LoginUser(email: string, password: string) {
-    const getUser = localStorage.getItem('Signup');
-    
-    if (getUser) {
-      const user = JSON.parse(getUser);
-      if (user.email == email && user.password == password) 
-      {
-        console.log('You are logged in ');
+    this.currentUser.EmailId = email;
+    this.currentUser.Password = password;
+    this.https.post("https://freeapi.miniprojectideas.com/api/JWT/login",this.currentUser).subscribe((res: any) =>{
+      if(res.result){
         this.loginCheck = true;
         this.snackBar.openSuccessfullySnackBar('Login Successfully', '');
         this.route.navigate(['coins']);
-      } 
-      else 
-      {
-        console.log('You are not logged in');
+      }else{
         this.loginCheck = false;
         this.snackBar.openfailSnackBar('Login Failed', '');
       }
-    } 
-    else 
-    {
-      console.log('Error in parsing to JSON of localstorage user item');
-    }
+    })
   }
-
-
-  
 }

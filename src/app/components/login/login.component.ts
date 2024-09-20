@@ -12,30 +12,21 @@ import { UserService } from '../../shared/service/registration/registration.serv
 })
 export class LoginComponent {
 
-
-
-constructor(public registerService:UserService )
+constructor(public userService:UserService )
 {
 
 }
 
-
-
-  loginForm = new FormGroup({
+loginForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl('')});
-
     onSubmit()
     {
       const emailValue=this.loginForm.get('email')?.value;
       const passwordValue=this.loginForm.get('password')?.value;
       if(emailValue!=null &&passwordValue!=null )
       {
-        this.registerService.LoginUser(emailValue,passwordValue);
+        this.userService.LoginUser(emailValue,passwordValue);
       }
     }
-
-
-
-
 }
