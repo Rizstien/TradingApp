@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { User } from '../../../../models/user.model';
+import { User } from '../../../../core/interceptors/models/user/user.model';
 
 @Component({
   selector: 'app-navbar',

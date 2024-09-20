@@ -1,19 +1,16 @@
-import { Component,signal } from '@angular/core';
 import { AsyncPipe, CommonModule, CurrencyPipe } from '@angular/common';
-import { Observable, interval,map } from 'rxjs';
-import { SortPipe } from '../../../shared/pipes/sort.pipe';
-import { NavbarComponent } from "../../../shared/component/navbar/navbar/navbar.component";
+import { Component, signal } from '@angular/core';
+import { NavbarComponent } from '../../../../../shared/component/navbar/navbar/navbar.component';
+import { CoinPipePipe } from '../../../../../shared/pipes/coins/coin-pipe.pipe';
 
 @Component({
-  selector: 'app-trading',
+  selector: 'app-coins',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe, AsyncPipe, SortPipe, NavbarComponent],
-  templateUrl: './trading.component.html',
-  styleUrl: './trading.component.scss'
+  imports: [CommonModule, CurrencyPipe, AsyncPipe,CoinPipePipe,NavbarComponent],
+  templateUrl: './coins.component.html',
+  styleUrl: './coins.component.scss'
 })
-
-export class TradingComponent {
-
+export class CoinsComponent {
   public coins: any[] = [
     { name: 'Bitcoin', value: signal(100),marketCap:"10B",volume:signal(10000) },
     { name: 'Ethereum', value: signal(50),marketCap:"8B",volume:signal(30000) },
