@@ -22,11 +22,9 @@ loginForm = new FormGroup({
     password: new FormControl('')});
     onSubmit()
     {
-      const emailValue=this.loginForm.get('email')?.value;
-      const passwordValue=this.loginForm.get('password')?.value;
-      if(emailValue!=null &&passwordValue!=null )
-      {
-        this.userService.LoginUser(emailValue,passwordValue);
-      }
+      const email=this.loginForm.get('email')?.value;
+      const password=this.loginForm.get('password')?.value;
+      if(email!=null &&password!=null )
+        this.userService.LoginUser(email,password);
     }
 }

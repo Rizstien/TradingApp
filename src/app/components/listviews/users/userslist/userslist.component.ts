@@ -35,7 +35,9 @@ export class UserslistComponent implements OnInit {
     this.userservice.fetchUsersData(this.freeapibaseurl+'JWT/GetAllUsers').subscribe((data) => 
       { 
         this.snackBar.openSuccessfullySnackBar('Users List Found Successfully', '');
-        this.usersList = data;
+        const dataArray = data;
+        if(dataArray.length > 100)
+          this.usersList = data.slice(-50);
       },error => 
       { 
         const errorMessage = error.error ? error.error.message || error.message : error.message || 'Unknown error occurred';

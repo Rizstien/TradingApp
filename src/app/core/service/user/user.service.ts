@@ -32,7 +32,10 @@ export class UserService {
       if(res.result)
       {
         this.loginCheck = true;
+        
+        localStorage.removeItem("userInfo");
         localStorage.setItem("userInfo", JSON.stringify(res.data));
+
         this.snackBar.openSuccessfullySnackBar('Login Successfully', '');
         this.route.navigate(['coins']);
       }
@@ -51,7 +54,7 @@ export class UserService {
 
   fetchUsersData(url: string): Observable<any> {
     return this.https.get(url).pipe(
-      map((response: any) => response.body)
+      map((response: any) => response.data)
     );
   }
 
