@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { User } from '../../../../core/interceptors/models/user/user.model';
+
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +11,7 @@ import { User } from '../../../../core/interceptors/models/user/user.model';
 })
 export class NavbarComponent {
 
-  user: User = new User;
+
   constructor(
     public route: Router,
   ) {}

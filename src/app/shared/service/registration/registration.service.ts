@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LoginResponse } from '../../../core/interceptors/models/loginresponse/login-response.model';
 import { Router } from '@angular/router';
 import { ToastService } from '../toast/toast.service';
 import { environment } from '../../../../environments/environment';
@@ -25,14 +24,7 @@ export class UserService {
   ) {}
   loginCheck: boolean = false;
 
-   signUp(userData: any): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    console.log(userData);
-    return this.https.post(`${this.freeapibaseurl}createNewUser`, userData, { headers });
-  
-  }
+   
 
   LoginUser(email: string, password: string) {
     this.currentUser.EmailId = email;
