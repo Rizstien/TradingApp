@@ -1,16 +1,16 @@
 import { AsyncPipe, CommonModule, CurrencyPipe } from '@angular/common';
 import { Component, signal } from '@angular/core';
-import { NavbarComponent } from '../../../../../shared/component/navbar/navbar/navbar.component';
-import { CoinPipePipe } from '../../../../../shared/pipes/coins/coin-pipe.pipe';
+import { NavbarComponent } from '../../../../shared/component/navbar/navbar/navbar.component';
+import { CoinPipePipe } from '../../../../shared/pipes/coins/coin-pipe.pipe';
 
 @Component({
-  selector: 'app-coins',
+  selector: 'app-currencylist',
   standalone: true,
-  imports: [CommonModule, CurrencyPipe, AsyncPipe,CoinPipePipe,NavbarComponent],
-  templateUrl: './coins.component.html',
-  styleUrl: './coins.component.scss'
+  imports: [CommonModule, CurrencyPipe, AsyncPipe, NavbarComponent, CoinPipePipe],
+  templateUrl: './currencylist.component.html',
+  styleUrl: './currencylist.component.scss'
 })
-export class CoinsComponent {
+export class CurrencylistComponent {
   public coins: any[] = [
     { name: 'Bitcoin', value: signal(100),marketCap:"10B",volume:signal(10000) },
     { name: 'Ethereum', value: signal(50),marketCap:"8B",volume:signal(30000) },
@@ -51,4 +51,5 @@ export class CoinsComponent {
       });
     }, 1000);
   }
+
 }

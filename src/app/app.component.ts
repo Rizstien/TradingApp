@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './shared/component/navbar/navbar/navbar.component';
-import { CoinsComponent } from './components/listviews/coins/coins/coins/coins.component';
-import { TradeComponent } from './components/listviews/coins/trades/trade/trade.component';
+
+import { CurrencylistComponent } from './components/listviews/currency/currencylist/currencylist.component';
+import { TradinglistComponent } from './components/listviews/trading/tradinglist/tradinglist.component';
 
 
 @Component({
@@ -11,9 +12,8 @@ import { TradeComponent } from './components/listviews/coins/trades/trade/trade.
   imports: [
     RouterOutlet,
     NavbarComponent,
-    CoinsComponent,
-    TradeComponent
-    
+    CurrencylistComponent,
+    TradinglistComponent
 ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
