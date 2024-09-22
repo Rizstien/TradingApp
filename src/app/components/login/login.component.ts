@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { UserService } from '../../core/service/user/user.service';
@@ -12,16 +12,12 @@ import { UserService } from '../../core/service/user/user.service';
 })
 export class LoginComponent {
 
-constructor(public userService:UserService )
-{
-
-}
+constructor(public userService:UserService ){}
 
 loginForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl('')});
-    onSubmit()
-    {
+    onSubmit(){
       const email=this.loginForm.get('email')?.value;
       const password=this.loginForm.get('password')?.value;
       if(email!=null &&password!=null )

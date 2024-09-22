@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { ToastService } from '../toast/toast.service';
 import { map } from 'rxjs';
 import { environment } from '../../../../environments/environment';
+import { T } from '@angular/cdk/keycodes';
 
 
 @Injectable({
@@ -14,10 +15,31 @@ export class UserService {
   private freeapibaseurl: string = environment.freebasebaseurl;
   loginCheck: boolean = false;
 
-  currentUser = {
+  loginmodel = {
     EmailId: "",
     Password: ""
   }  
+  registermodel = {
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    mobileNo: "",
+    emailId: "",
+    altMobileNo: "",
+    password: "",
+    userAddress: {
+      city: "",
+      state: "",
+      pincode: "",
+      addressLine: "",
+    },
+    userSocialDetails: {
+      facebookProfileUrl: "",
+      linkdinProfileUrl: "",
+      instagramHandle: "",
+      twitterHandle: ""
+    }
+  } 
 
   constructor( 
     public https: HttpClient,
@@ -25,9 +47,9 @@ export class UserService {
     public snackBar: ToastService,) { }
 
   LoginUser(email: string, password: string) {
-    this.currentUser.EmailId = email;
-    this.currentUser.Password = password;
-    this.https.post("https://freeapi.miniprojectideas.com/api/JWT/login",this.currentUser).subscribe((res: any) =>
+    this.loginmodel.EmailId = email;
+    this.loginmodel.Password = password;
+    this.https.post(this.freeapibaseurl+"JWT/login",this.loginmodel).subscribe((res: any) =>
     {
       if(res.result)
       {
@@ -50,12 +72,40 @@ export class UserService {
       this.snackBar.openfailSnackBar('Login Failed: ' + errorMessage, '');
     });
   }
-
-
+  
+  RegisterUser(formData: any) {
+    this.registermodel.firstName = formData.firstname;
+    this.registermodel.middleName = formData.middlename;
+    this.registermodel.lastName = formData.lastname;
+    this.registermodel.mobileNo = formData.mobile;
+    this.registermodel.altMobileNo = formData.mobile;
+    this.registermodel.emailId = formData.email;
+    this.registermodel.password  = formData.password;
+    this.registermodel.userAddress.state = formData.state;
+    this.registermodel.userAddress.city = formData.city;
+    this.registermodel.userAddress.pincode = formData.pincode;
+    this.registermodel.userAddress.addressLine = formData.address;
+    this.https.post(this.freeapibaseurl+"JWT/CreateNewUser",this.registermodel).subscribe((res: any) =>
+    {
+      if(res.result)
+      {
+        alert("Sign Up Success");
+        this.snackBar.openSuccessfullySnackBar('Sign Up Successfully', '');
+        this.route.navigate(['/login']);
+      }
+      else
+      {
+        console.log(res);
+        this.snackBar.openfailSnackBar('Sign Up Failed'+res.message, '');
+        this.route.navigate(['/login']);
+      }
+    },error =>{
+      const errorMessage = error.error ? error.error.message || error.message : error.message || 'Unknown error occurred';
+      this.snackBar.openfailSnackBar('Login Failed: ' + errorMessage, '');
+    });
+  }
   fetchUsersData(url: string): Observable<any> {
-    return this.https.get(url).pipe(
-      map((response: any) => response.data)
-    );
+    return this.https.get(url).pipe(map((response: any) => response.data));
   }
 
 
