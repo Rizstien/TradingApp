@@ -5,20 +5,19 @@ import { Router } from '@angular/router';
 import { ToastService } from '../toast/toast.service';
 import { map } from 'rxjs';
 import { environment } from '../../../../environments/environment';
-import { T } from '@angular/cdk/keycodes';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   private freeapibaseurl: string = environment.freebasebaseurl;
+  
   loginCheck: boolean = false;
-
   loginmodel = {
     EmailId: "",
     Password: ""
   }  
+  
   registermodel = {
     firstName: "",
     middleName: "",
@@ -46,9 +45,9 @@ export class UserService {
     public route: Router,
     public snackBar: ToastService,) { }
 
-  LoginUser(email: string, password: string) {
-    this.loginmodel.EmailId = email;
-    this.loginmodel.Password = password;
+  LoginUser(formData: any) {
+    this.loginmodel.EmailId = formData.email;
+    this.loginmodel.Password = formData.password;
     this.https.post(this.freeapibaseurl+"JWT/login",this.loginmodel).subscribe((res: any) =>
     {
       if(res.result)
@@ -72,6 +71,7 @@ export class UserService {
       this.snackBar.openfailSnackBar('Login Failed: ' + errorMessage, '');
     });
   }
+
   
   RegisterUser(formData: any) {
     this.registermodel.firstName = formData.firstname;

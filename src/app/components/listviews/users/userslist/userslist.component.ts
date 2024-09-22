@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
 import { UserService } from '../../../../core/service/user/user.service';
 import { ToastService } from '../../../../core/service/toast/toast.service';
+import { S } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-userslist',
@@ -35,9 +36,11 @@ export class UserslistComponent implements OnInit {
     this.userservice.fetchUsersData(this.freeapibaseurl+'JWT/GetAllUsers').subscribe((data) => 
       { 
         this.snackBar.openSuccessfullySnackBar('Users List Found Successfully', '');
-        const dataArray = data;
-        if(dataArray.length > 100)
-          this.usersList = data.slice(-50);
+        this.usersList = data;
+
+        // if(dataArray.length > 100)
+        //   this.usersList = data;
+        //   console.log(usersList)
       },error => 
       { 
         const errorMessage = error.error ? error.error.message || error.message : error.message || 'Unknown error occurred';
