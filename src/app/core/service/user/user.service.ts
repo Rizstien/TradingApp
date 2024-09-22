@@ -1,31 +1,28 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { ToastService } from '../toast/toast.service';
+import { map } from 'rxjs';
 import { environment } from '../../../../environments/environment';
-import { map } from 'rxjs/operators';
+
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-
 export class UserService {
-  
   private freeapibaseurl: string = environment.freebasebaseurl;
-  
+  loginCheck: boolean = false;
+
   currentUser = {
     EmailId: "",
     Password: ""
   }  
-  constructor(
+
+  constructor( 
     public https: HttpClient,
     public route: Router,
-    public snackBar: ToastService,
-  ) {}
-  loginCheck: boolean = false;
-
-   
+    public snackBar: ToastService,) { }
 
   LoginUser(email: string, password: string) {
     this.currentUser.EmailId = email;
@@ -59,6 +56,7 @@ export class UserService {
   }
 
 
-
-  
 }
+
+
+

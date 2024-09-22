@@ -11,7 +11,7 @@
             <div class="font-semibold text-xl">Trader USD Value</div>
         </div>
 
-        <div *ngFor="let tradedata of tradeList | tradePipe: 'transactionType': true" class="grid grid-cols-4 text-center bg-gray-700 hover:bg-gray-600 transition-colors rounded-lg shadow-md py-4 mb-2">
+        <div *ngFor="let tradedata of tradeList | tradingSort: 'transactionType': true" class="grid grid-cols-4 text-center bg-gray-700 hover:bg-gray-600 transition-colors rounded-lg shadow-md py-4 mb-2">
             <div class="font-medium text-lg">{{ tradedata.firstName }}  {{ tradedata.lastName }}</div>
             <div class="font-medium text-lg">{{tradedata.transactionType}}</div>
             <div class="font-medium text-lg">{{tradedata.transactionDate}}</div>

@@ -1,15 +1,16 @@
 import { CommonModule, JsonPipe } from '@angular/common';
 import { Component,OnInit } from '@angular/core';
-import { TradePipePipe } from '../../../../shared/pipes/trade/trade-pipe.pipe';
-import { TradingService } from '../../../../shared/service/trade/trading.service';
+
 import { NavbarComponent } from '../../../../shared/component/navbar/navbar/navbar.component';
 import { environment } from '../../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { TradingService } from '../../../../core/service/trade/trading.service';
+import { TradingSortPipe } from '../../../../shared/pipes/trading/trading-sort.pipe';
 
 @Component({
   selector: 'app-tradinglist',
   standalone: true,
-  imports: [CommonModule, JsonPipe, TradePipePipe, NavbarComponent],
+  imports: [CommonModule, JsonPipe, TradingSortPipe, NavbarComponent],
   templateUrl: './tradinglist.component.html',
   styleUrl: './tradinglist.component.scss'
 })

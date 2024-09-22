@@ -1,10 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'tradePipe',
+  name: 'tradingSort',
   standalone: true
 })
-export class TradePipePipe implements PipeTransform {
+export class TradingSortPipe implements PipeTransform {
 
   transform(value: any[], sortBy: string, isDescending: boolean = false): any[] {
     if (!value || !sortBy) {

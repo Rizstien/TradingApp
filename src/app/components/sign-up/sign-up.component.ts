@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import {ReactiveFormsModule, } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { UserService } from '../../shared/service/registration/registration.service';
-
-import { ToastService } from '../../shared/service/toast/toast.service';
-
-
+import { ToastService } from '../../core/service/toast/toast.service';
 
 @Component({
   selector: 'app-sign-up',

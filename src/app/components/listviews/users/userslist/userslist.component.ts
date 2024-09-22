@@ -1,32 +1,45 @@
 import { CommonModule, JsonPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { TradePipePipe } from '../../../../shared/pipes/trade/trade-pipe.pipe';
 import { NavbarComponent } from '../../../../shared/component/navbar/navbar/navbar.component';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../../environments/environment.development';
-import { TradingService } from '../../../../shared/service/trade/trading.service';
+import { environment } from '../../../../../environments/environment';
+import { UserService } from '../../../../core/service/user/user.service';
+import { ToastService } from '../../../../core/service/toast/toast.service';
 
 @Component({
   selector: 'app-userslist',
   standalone: true,
-  imports: [CommonModule, JsonPipe, TradePipePipe, NavbarComponent],
+  imports: [CommonModule, JsonPipe, NavbarComponent],
   templateUrl: './userslist.component.html',
   styleUrl: './userslist.component.scss'
 })
 export class UserslistComponent implements OnInit {
-  tradeList: any[] = [];
-  private traderapibaseurl: string = environment.traderapibaseurl;
-  constructor(public httpClient: HttpClient,private tradingservice: TradingService){ }
+  
+  usersList: any[] = [];
+  
+  
+  private freeapibaseurl: string = environment.freebasebaseurl;
+
+
+  constructor(
+    public httpClient: HttpClient,
+    private userservice: UserService,
+    public snackBar: ToastService,
+  ){ }
+  
+  
   ngOnInit(): void {
-    this.getMockAPITradeList();
+    this.getUsersList();
   }
-  getMockAPITradeList(){    
-    this.tradingservice.fetchData(this.traderapibaseurl+'v1/markets/insider-trades').subscribe((data) => {
-        this.tradeList = data;
-        console.log(this.tradeList);
-      },
-      (error) => {
-        console.error('Error fetching data:', error);
+  getUsersList(){    
+    this.userservice.fetchUsersData(this.freeapibaseurl+'JWT/GetAllUsers').subscribe((data) => 
+      { 
+        this.snackBar.openSuccessfullySnackBar('Users List Found Successfully', '');
+        this.usersList = data;
+      },error => 
+      { 
+        const errorMessage = error.error ? error.error.message || error.message : error.message || 'Unknown error occurred';
+        this.snackBar.openfailSnackBar('Login Failed: ' + errorMessage, '');
       }
     );
   }

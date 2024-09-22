@@ -1,11 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'coinPipe',
-  standalone: true,
-  pure: false // Impure pipe so it updates dynamically
+  name: 'currencySort',
+  standalone: true
 })
-export class CoinPipePipe implements PipeTransform {
+export class CurrencySortPipe implements PipeTransform {
 
   transform(array: any[], field: string, order: string): any[] {
     if (!Array.isArray(array) || !field) {
