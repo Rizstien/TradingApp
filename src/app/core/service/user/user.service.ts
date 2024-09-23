@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ToastService } from '../toast/toast.service';
 import { map } from 'rxjs';
 import { environment } from '../../../../environments/environment';
+import { Registration } from '../../models/registration/registration.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class UserService {
   }  
   
   registermodel = {
+    userId : 0,
     firstName: "",
     middleName: "",
     lastName: "",
@@ -71,9 +73,8 @@ export class UserService {
       this.snackBar.openfailSnackBar('Login Failed: ' + errorMessage, '');
     });
   }
-
-  
-  RegisterUser(formData: any) {
+  RegisterUser(formData: any): Observable<any> {
+    this.registermodel.userId = 0;
     this.registermodel.firstName = formData.firstname;
     this.registermodel.middleName = formData.middlename;
     this.registermodel.lastName = formData.lastname;
@@ -85,25 +86,11 @@ export class UserService {
     this.registermodel.userAddress.city = formData.city;
     this.registermodel.userAddress.pincode = formData.pincode;
     this.registermodel.userAddress.addressLine = formData.address;
-    this.https.post(this.freeapibaseurl+"JWT/CreateNewUser",this.registermodel).subscribe((res: any) =>
-    {
-      if(res.result)
-      {
-        alert("Sign Up Success");
-        this.snackBar.openSuccessfullySnackBar('Sign Up Successfully', '');
-        this.route.navigate(['/login']);
-      }
-      else
-      {
-        console.log(res);
-        this.snackBar.openfailSnackBar('Sign Up Failed'+res.message, '');
-        this.route.navigate(['/login']);
-      }
-    },error =>{
-      const errorMessage = error.error ? error.error.message || error.message : error.message || 'Unknown error occurred';
-      this.snackBar.openfailSnackBar('Login Failed: ' + errorMessage, '');
-    });
+    return this.https.post('https://freeapi.miniprojectideas.com/api/JWT/CreateNewUser', this.registermodel);
+   
   }
+
+
   fetchUsersData(url: string): Observable<any> {
     return this.https.get(url).pipe(map((response: any) => response.data));
   }

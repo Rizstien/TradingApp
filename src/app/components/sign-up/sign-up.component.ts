@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 
 import { ToastService } from '../../core/service/toast/toast.service';
 import { UserService } from '../../core/service/user/user.service';
+import { catchError, throwError } from 'rxjs';
 
 
 @Component({
@@ -54,7 +55,25 @@ export class SignUpComponent implements OnInit {
     if (this.signUpForm.valid) 
     {
       const formData = this.signUpForm.value;
-      this.userService.RegisterUser(formData);
+      this.userService.RegisterUser(formData).pipe(
+          catchError((error: any) => {
+            console.error("An error occurred:", error);
+            return throwError(() => new Error(error));
+          }),
+        )
+        .subscribe((signupresponse) => {
+          if (signupresponse.result) 
+          {
+              this.snackBar.openSuccessfullySnackBar('Sign Up Successfully', '');
+              this.route.navigate(['/login']);
+          } 
+          else 
+          {
+            console.log(signupresponse);
+            this.snackBar.openfailSnackBar('Sign Up Failed'+signupresponse,'');
+            this.route.navigate(['/login']);
+          }
+        });
     } 
     else 
     {
